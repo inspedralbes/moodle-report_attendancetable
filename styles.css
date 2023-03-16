@@ -1,0 +1,15 @@
+.grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    /*justify-items: center;*/
+}
+
+.grid > * {
+    outline: 1px solid orange;
+    text-align: center;
+}
+
+.main {
+    grid-column: 1/5;
+    font-weight: bolder;
+}
