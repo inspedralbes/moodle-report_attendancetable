@@ -21,6 +21,9 @@ Manual download
 ![Folder screenshot](/screenshots/report_folder.png)
 3. As admin, go to site administration and follow the necessary steps to install the plugin
 ![Sidebar](/screenshots/sidebar.png)
+<br>
+<sup>Sidebar on the dashboard, although Moodle might auto redirect the admin account to the administrator screen</sup>
+
 ![Report upgrade 1](/screenshots/upgrade.png)
 ![Report upgrade 2](/screenshots/plugin_upgrade.png)
 
@@ -33,6 +36,9 @@ Setting up the block
 ![Course gear](/screenshots/report_access.png)
 4. Click on Attendance Table on Reports in the Course administration section
 ![Admin page](/screenshots/course_admin.png)
+
+Report view
+-----------
 ![Report view](/screenshots/report_view.png)
 
 Recommended
