@@ -8,7 +8,7 @@ Report Attendance Table
 Description
 ===========
 Report attendance table is a plugin based on [Attendance](https://moodle.org/plugins/mod_attendance), used to show teachers their students'
-attendance percentage and show each student their own attendance percentage, across all courses and sections.
+attendance percentage and show each student their own attendance percentage, across all courses and sections with an Attendance activity.
 
 Instructions
 ===========
@@ -18,7 +18,11 @@ Manual download
 ---------------
 1. Download the plugin
 2. Copy its content to a folder called attendancetable inside your moodle/report
+![Folder screenshot](/screenshots/report_folder.png)
 3. As admin, go to site administration and follow the necessary steps to install the plugin
+![Sidebar](/screenshots/sidebar.png)
+![Report upgrade 1](/screenshots/upgrade.png)
+![Report upgrade 2](/screenshots/plugin_upgrade.png)
 
 Setting up the block
 --------------------
@@ -26,7 +30,10 @@ Setting up the block
 1. Turn editing on
 2. Add an Attendance activity to your course (if there's none yet)
 3. Once Attendance is set up, click on the gear on the top right part of the course, then click on More
+![Course gear](/screenshots/report_access.png)
 4. Click on Attendance Table on Reports in the Course administration section
+![Admin page](/screenshots/course_admin.png)
+![Report view](/screenshots/report_view.png)
 
 Recommended
 ===========
