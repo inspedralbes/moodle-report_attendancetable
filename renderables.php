@@ -56,61 +56,121 @@ class attendancetable_print_table implements renderable {
         $idsattencourse = [];
 
         foreach ($users as $user) {
+            global $USER;
             $roles = get_user_roles($contextcourse, $user->id, true);
             $role = key($roles);
             $rolename = $roles[$role]->shortname;
+            if (
+                has_capability('mod/attendance:canbelisted', $context, null, false) &&
+                has_capability('mod/attendance:view', $context)
+            ) {
+                if ($rolename == 'student') {
+                    $userdata = new attendance_user_data($att, $user->id);
+                    if($userdata->user->id == $USER->id) {    
+                        $totalattendance = 0;
+                        $totalpercentage = 0;
+                        $totalstats = ['P' => 0, 'A' => 0, 'T' => 0, 'J' => 0];
 
-            if ($rolename == 'student') {
-                $userdata = new attendance_user_data($att, $user->id);
+                        foreach ($userdata->coursesatts as $ca) {
+                            $usersummary = new stdClass();
+                            $userattsummary = new mod_attendance_summary($ca->attid, $user->id);
+                            $userstats = isset($userattsummary->get_taken_sessions_summary_for($user->id)->userstakensessionsbyacronym[0])
+                                ? $userattsummary->get_taken_sessions_summary_for($user->id)->userstakensessionsbyacronym[0] : null;
 
-                $totalattendance = 0;
-                $totalpercentage = 0;
-                $totalstats = ['P' => 0, 'A' => 0, 'T' => 0, 'J' => 0];
+                            $totalstats['P'] += isset($userstats['P']) ? $userstats['P'] : 0;
+                            $totalstats['A'] += isset($userstats['A']) ? $userstats['A'] : 0;
+                            $totalstats['T'] += isset($userstats['L']) ? $userstats['L'] : 0;
+                            $totalstats['J'] += isset($userstats['E']) ? $userstats['E'] : 0;
 
-                foreach ($userdata->coursesatts as $ca) {
-                    $usersummary = new stdClass();
-                    $userattsummary = new mod_attendance_summary($ca->attid, $user->id);
-                    $userstats = isset($userattsummary->get_taken_sessions_summary_for($user->id)->userstakensessionsbyacronym[0])
-                        ? $userattsummary->get_taken_sessions_summary_for($user->id)->userstakensessionsbyacronym[0] : null;
+                            $userstats['P'] = isset($userstats['P']) ? $userstats['P'] : 0;
+                            $userstats['A'] = isset($userstats['A']) ? $userstats['A'] : 0;
+                            $userstats['T'] = isset($userstats['L']) ? $userstats['L'] : 0;
+                            $userstats['J'] = isset($userstats['E']) ? $userstats['E'] : 0;
 
-                    $totalstats['P'] += isset($userstats['P']) ? $userstats['P'] : 0;
-                    $totalstats['A'] += isset($userstats['A']) ? $userstats['A'] : 0;
-                    $totalstats['T'] += isset($userstats['T']) ? $userstats['T'] : 0;
-                    $totalstats['J'] += isset($userstats['J']) ? $userstats['J'] : 0;
+                            if (isset($userdata->summary[$ca->attid])) {
+                                $usersummary = $userdata->summary[$ca->attid]->get_all_sessions_summary_for($userdata->user->id);
+                            }
 
-                    $userstats['P'] = isset($userstats['P']) ? $userstats['P'] : 0;
-                    $userstats['A'] = isset($userstats['A']) ? $userstats['A'] : 0;
-                    $userstats['T'] = isset($userstats['T']) ? $userstats['T'] : 0;
-                    $userstats['J'] = isset($userstats['J']) ? $userstats['J'] : 0;
+                            if ($usersummary->numtakensessions > 0) {
+                                $totalattendance++;
+                                $totalpercentage = $totalpercentage + $usersummary->takensessionspercentage * 100;
+                            }
 
-                    if (isset($userdata->summary[$ca->attid])) {
-                        $usersummary = $userdata->summary[$ca->attid]->get_all_sessions_summary_for($userdata->user->id);
+                            $absent = get_string('Aacronym', 'mod_attendance');
+                            $present = get_string('Pacronym', 'mod_attendance');
+                            $late = get_string('Lacronym', 'mod_attendance');
+                            $excused = get_string('Eacronym', 'mod_attendance');
+
+                            $course = get_course($ca->courseid);
+
+                            $presentaverage = (format_float($usersummary->takensessionspercentage * 100) . '%' );
+                            $data[$user->id][$course->shortname][$ca->attname] = ['stats' => $userstats, 'average' => $presentaverage];
+                            $idsattencourse[$course->shortname][$ca->attname] = '-';
+                            $course = get_course($ca->courseid);
+
+                        }
+
+                    if (empty($totalattendance)) {
+                        $average = '-';
+                    } else {
+                        $average = format_float($totalpercentage / $totalattendance) . '%';
+                    }
+                        $data[$user->id]['total'] = ['stats' => $totalstats, 'average' => $average];
+                    }
+                }
+            } else {
+                if ($rolename == 'student') {
+                    $userdata = new attendance_user_data($att, $user->id);
+
+                    $totalattendance = 0;
+                    $totalpercentage = 0;
+                    $totalstats = ['P' => 0, 'A' => 0, 'T' => 0, 'J' => 0];
+
+                    foreach ($userdata->coursesatts as $ca) {
+                        $usersummary = new stdClass();
+                        $userattsummary = new mod_attendance_summary($ca->attid, $user->id);
+                        $userstats = isset($userattsummary->get_taken_sessions_summary_for($user->id)->userstakensessionsbyacronym[0])
+                            ? $userattsummary->get_taken_sessions_summary_for($user->id)->userstakensessionsbyacronym[0] : null;
+
+                        $totalstats['P'] += isset($userstats['P']) ? $userstats['P'] : 0;
+                        $totalstats['A'] += isset($userstats['A']) ? $userstats['A'] : 0;
+                        $totalstats['T'] += isset($userstats['L']) ? $userstats['L'] : 0;
+                        $totalstats['J'] += isset($userstats['E']) ? $userstats['E'] : 0;
+
+                        $userstats['P'] = isset($userstats['P']) ? $userstats['P'] : 0;
+                        $userstats['A'] = isset($userstats['A']) ? $userstats['A'] : 0;
+                        $userstats['T'] = isset($userstats['L']) ? $userstats['L'] : 0;
+                        $userstats['J'] = isset($userstats['E']) ? $userstats['E'] : 0;
+
+                        if (isset($userdata->summary[$ca->attid])) {
+                            $usersummary = $userdata->summary[$ca->attid]->get_all_sessions_summary_for($userdata->user->id);
+                        }
+
+                        if ($usersummary->numtakensessions > 0) {
+                            $totalattendance++;
+                            $totalpercentage = $totalpercentage + $usersummary->takensessionspercentage * 100;
+                        }
+
+                        $absent = get_string('Aacronym', 'mod_attendance');
+                        $present = get_string('Pacronym', 'mod_attendance');
+                        $late = get_string('Lacronym', 'mod_attendance');
+                        $excused = get_string('Eacronym', 'mod_attendance');
+
+                        $course = get_course($ca->courseid);
+
+                        $presentaverage = (format_float($usersummary->takensessionspercentage * 100) . '%' );
+                        $data[$user->id][$course->shortname][$ca->attname] = ['stats' => $userstats, 'average' => $presentaverage];
+                        $idsattencourse[$course->shortname][$ca->attname] = '-';
+                        $course = get_course($ca->courseid);
                     }
 
-                    if ($usersummary->numtakensessions > 0) {
-                        $totalattendance++;
-                        $totalpercentage = $totalpercentage + $usersummary->takensessionspercentage * 100;
+                    if (empty($totalattendance)) {
+                        $average = '-';
+                    } else {
+                        $average = format_float($totalpercentage / $totalattendance) . '%';
                     }
-
-                    $absent = get_string('Aacronym', 'mod_attendance');
-                    $present = get_string('Pacronym', 'mod_attendance');
-                    $late = get_string('Lacronym', 'mod_attendance');
-                    $excused = get_string('Eacronym', 'mod_attendance');
-
-                    $course = get_course($ca->courseid);
-
-                    $presentaverage = (format_float($usersummary->takensessionspercentage * 100) . '%' );
-                    $data[$user->id][$course->shortname][$ca->attname] = ['stats' => $userstats, 'average' => $presentaverage];
-                    $idsattencourse[$course->shortname][$ca->attname] = '-';
-                    $course = get_course($ca->courseid);
+                        $data[$user->id]['total'] = ['stats' => $totalstats, 'average' => $average];
                 }
-
-                if (empty($totalattendance)) {
-                    $average = '-';
-                } else {
-                    $average = format_float($totalpercentage / $totalattendance) . '%';
-                }
-                    $data[$user->id]['total'] = ['stats' => $totalstats, 'average' => $average];
             }
         }
 

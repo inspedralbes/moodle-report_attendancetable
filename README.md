@@ -7,8 +7,8 @@ Report Attendance Table
 
 Description
 ===========
-Report attendance table is a plugin based on [Attendance](https://moodle.org/plugins/mod_attendance), used to show teachers their students'
-attendance percentage and show each student their own attendance percentage, across all courses and sections with an Attendance activity.
+Report attendance table is a plugin based on [Attendance](https://moodle.org/plugins/mod_attendance), used to show tutors their students'
+attendance percentage across all courses with an Attendance activity, and show each student their own attendance percentage.
 
 Instructions
 ===========
@@ -39,7 +39,13 @@ Setting up the block
 
 Report view
 -----------
-![Report view](/screenshots/report_view.png)
+![Report view tutor](/screenshots/report_view_teacher.png)
+<br>
+<sup>The tutor's view</sup>
+<br>
+![Report view student](/screenshots/report_view_student.png)
+<br>
+<sup>The student's view</sup>
 
 Recommended
 ===========

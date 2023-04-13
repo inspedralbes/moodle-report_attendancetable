@@ -69,7 +69,7 @@ class report_attendancetable_renderer extends plugin_renderer_base {
             $rows->cells[] = '------';
             $cell = new html_table_cell();
                         $cell = html_writer::start_div('grid');
-                        $cell .= html_writer::div("Pre", 'precentage');
+                        $cell .= html_writer::div("Per", 'percentage');
                         $cell .= html_writer::div(get_string('Pacronym', 'mod_attendance'), 'present');
                         $cell .= html_writer::div(get_string('Lacronym', 'mod_attendance'), 'late');
                         $cell .= html_writer::div(get_string('Eacronym', 'mod_attendance'), 'excused');
