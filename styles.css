@@ -1,15 +1,15 @@
-.grid {
+.report_attendancetable .grid {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
     /*justify-items: center;*/
 }
 
-.grid > * {
+.report_attendancetable .grid > * {
     outline: 1px solid orange;
     text-align: center;
 }
 
-.main {
+.report_attendancetable  .main {
     grid-column: 1/5;
     font-weight: bolder;
 }

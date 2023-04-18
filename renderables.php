@@ -66,7 +66,7 @@ class attendancetable_print_table implements renderable {
             ) {
                 if ($rolename == 'student') {
                     $userdata = new attendance_user_data($att, $user->id);
-                    if($userdata->user->id == $USER->id) {
+                    if ($userdata->user->id == $USER->id) {
                         $totalattendance = 0;
                         $totalpercentage = 0;
                         $totalstats = ['P' => 0, 'A' => 0, 'T' => 0, 'J' => 0];
@@ -105,7 +105,8 @@ class attendancetable_print_table implements renderable {
                             $course = get_course($ca->courseid);
 
                             $presentaverage = (format_float($usersummary->takensessionspercentage * 100) . '%' );
-                            $data[$user->id][$course->shortname][$ca->attname] = ['stats' => $userstats, 'average' => $presentaverage];
+                            $data[$user->id][$course->shortname][$ca->attname] =
+                                ['stats' => $userstats, 'average' => $presentaverage];
                             $idsattencourse[$course->shortname][$ca->attname] = '-';
                             $course = get_course($ca->courseid);
 
