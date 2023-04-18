@@ -66,7 +66,7 @@ class attendancetable_print_table implements renderable {
             ) {
                 if ($rolename == 'student') {
                     $userdata = new attendance_user_data($att, $user->id);
-                    if($userdata->user->id == $USER->id) {    
+                    if($userdata->user->id == $USER->id) {
                         $totalattendance = 0;
                         $totalpercentage = 0;
                         $totalstats = ['P' => 0, 'A' => 0, 'T' => 0, 'J' => 0];
@@ -74,8 +74,9 @@ class attendancetable_print_table implements renderable {
                         foreach ($userdata->coursesatts as $ca) {
                             $usersummary = new stdClass();
                             $userattsummary = new mod_attendance_summary($ca->attid, $user->id);
-                            $userstats = isset($userattsummary->get_taken_sessions_summary_for($user->id)->userstakensessionsbyacronym[0])
-                                ? $userattsummary->get_taken_sessions_summary_for($user->id)->userstakensessionsbyacronym[0] : null;
+                            $userstats = isset($userattsummary->get_taken_sessions_summary_for($user->id)
+                                ->userstakensessionsbyacronym[0]) ? $userattsummary->get_taken_sessions_summary_for($user->id)
+                                ->userstakensessionsbyacronym[0] : null;
 
                             $totalstats['P'] += isset($userstats['P']) ? $userstats['P'] : 0;
                             $totalstats['A'] += isset($userstats['A']) ? $userstats['A'] : 0;
@@ -110,11 +111,11 @@ class attendancetable_print_table implements renderable {
 
                         }
 
-                    if (empty($totalattendance)) {
-                        $average = '-';
-                    } else {
-                        $average = format_float($totalpercentage / $totalattendance) . '%';
-                    }
+                        if (empty($totalattendance)) {
+                            $average = '-';
+                        } else {
+                            $average = format_float($totalpercentage / $totalattendance) . '%';
+                        }
                         $data[$user->id]['total'] = ['stats' => $totalstats, 'average' => $average];
                     }
                 }
@@ -129,8 +130,9 @@ class attendancetable_print_table implements renderable {
                     foreach ($userdata->coursesatts as $ca) {
                         $usersummary = new stdClass();
                         $userattsummary = new mod_attendance_summary($ca->attid, $user->id);
-                        $userstats = isset($userattsummary->get_taken_sessions_summary_for($user->id)->userstakensessionsbyacronym[0])
-                            ? $userattsummary->get_taken_sessions_summary_for($user->id)->userstakensessionsbyacronym[0] : null;
+                        $userstats = isset($userattsummary->get_taken_sessions_summary_for($user->id)
+                            ->userstakensessionsbyacronym[0]) ? $userattsummary->get_taken_sessions_summary_for($user->id)
+                            ->userstakensessionsbyacronym[0] : null;
 
                         $totalstats['P'] += isset($userstats['P']) ? $userstats['P'] : 0;
                         $totalstats['A'] += isset($userstats['A']) ? $userstats['A'] : 0;
