@@ -80,7 +80,7 @@ class attendancetable_print_table implements renderable {
                             $selectstatus = "SELECT * FROM mdl_attendance_statuses WHERE attendanceid = {$ca->attid};";
                             $attstatusresult = $DB->get_records_sql($selectstatus);
                             $acronyms = [];
-                            foreach($attstatusresult as $status) {
+                            foreach ($attstatusresult as $status) {
                                 array_push($acronyms, $status->acronym);
                             }
                             $totalstats['P'] += isset($userstats[$acronyms[0]]) ? $userstats[$acronyms[0]] : 0;
@@ -139,11 +139,11 @@ class attendancetable_print_table implements renderable {
                         $userstats = isset($userattsummary->get_taken_sessions_summary_for($user->id)
                             ->userstakensessionsbyacronym[0]) ? $userattsummary->get_taken_sessions_summary_for($user->id)
                             ->userstakensessionsbyacronym[0] : null;
-                            
+
                         $selectstatus = "SELECT * FROM mdl_attendance_statuses WHERE attendanceid = {$ca->attid};";
                         $attstatusresult = $DB->get_records_sql($selectstatus);
                         $acronyms = [];
-                        foreach($attstatusresult as $status) {
+                        foreach ($attstatusresult as $status) {
                             array_push($acronyms, $status->acronym);
                         }
                         $totalstats['P'] += isset($userstats[$acronyms[0]]) ? $userstats[$acronyms[0]] : 0;
