@@ -99,8 +99,8 @@ class report_attendancetable_renderer extends plugin_renderer_base {
                 $cell .= html_writer::div($attptable->data[$user]['total']['stats']['A'], 'main');
                 $cell .= html_writer::div($attptable->data[$user]['total']['average'], 'prec');
                 $cell .= html_writer::div($attptable->data[$user]['total']['stats']['P'], 'present');
-                $cell .= html_writer::div($attptable->data[$user]['total']['stats']['T'], 'late');
-                $cell .= html_writer::div($attptable->data[$user]['total']['stats']['J'], 'excused');
+                $cell .= html_writer::div($attptable->data[$user]['total']['stats']['L'], 'late');
+                $cell .= html_writer::div($attptable->data[$user]['total']['stats']['E'], 'excused');
                 $cell .= html_writer::end_div();
                 $rows->cells[] = $cell;
                 $table->data[] = $rows;
@@ -113,8 +113,8 @@ class report_attendancetable_renderer extends plugin_renderer_base {
                             $cell .= html_writer::div($attptable->data[$user][$curs][$att]['average'], 'main');
                             $cell .= html_writer::div($attptable->data[$user][$curs][$att]['stats']['A'], 'absent');
                             $cell .= html_writer::div($attptable->data[$user][$curs][$att]['stats']['P'], 'present');
-                            $cell .= html_writer::div($attptable->data[$user][$curs][$att]['stats']['T'], 'late');
-                            $cell .= html_writer::div($attptable->data[$user][$curs][$att]['stats']['J'], 'excused');
+                            $cell .= html_writer::div($attptable->data[$user][$curs][$att]['stats']['L'], 'late');
+                            $cell .= html_writer::div($attptable->data[$user][$curs][$att]['stats']['E'], 'excused');
                             $cell .= html_writer::end_div();
                             $rows->cells[] = $cell;
                         } else {
