@@ -47,10 +47,6 @@ Report view
 <br>
 <sup>The student's view</sup>
 
-Important
-===========
-This plugin only works with the default Attendance statuses (Present, Absent, Late and Excused), although it is possible to change the acronyms.
-
 Recommended
 ===========
 Download [Block Attendance Table](https://github.com/inspedralbes/moodle-block_attendancetable), which shows the lowest attendance students
