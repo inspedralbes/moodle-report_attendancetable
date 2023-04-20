@@ -85,13 +85,13 @@ class attendancetable_print_table implements renderable {
                             }
                             $totalstats['P'] += isset($userstats[$acronyms[0]]) ? $userstats[$acronyms[0]] : 0;
                             $totalstats['A'] += isset($userstats[$acronyms[1]]) ? $userstats[$acronyms[1]] : 0;
-                            $totalstats['T'] += isset($userstats[$acronyms[2]]) ? $userstats[$acronyms[2]] : 0;
-                            $totalstats['J'] += isset($userstats[$acronyms[3]]) ? $userstats[$acronyms[3]] : 0;
+                            $totalstats['L'] += isset($userstats[$acronyms[2]]) ? $userstats[$acronyms[2]] : 0;
+                            $totalstats['E'] += isset($userstats[$acronyms[3]]) ? $userstats[$acronyms[3]] : 0;
 
                             $userstats['P'] = isset($userstats[$acronyms[0]]) ? $userstats[$acronyms[0]] : 0;
                             $userstats['A'] = isset($userstats[$acronyms[1]]) ? $userstats[$acronyms[1]] : 0;
-                            $userstats['T'] = isset($userstats[$acronyms[2]]) ? $userstats[$acronyms[2]] : 0;
-                            $userstats['J'] = isset($userstats[$acronyms[3]]) ? $userstats[$acronyms[3]] : 0;
+                            $userstats['L'] = isset($userstats[$acronyms[2]]) ? $userstats[$acronyms[2]] : 0;
+                            $userstats['E'] = isset($userstats[$acronyms[3]]) ? $userstats[$acronyms[3]] : 0;
 
                             if (isset($userdata->summary[$ca->attid])) {
                                 $usersummary = $userdata->summary[$ca->attid]->get_all_sessions_summary_for($userdata->user->id);
@@ -148,13 +148,13 @@ class attendancetable_print_table implements renderable {
                         }
                         $totalstats['P'] += isset($userstats[$acronyms[0]]) ? $userstats[$acronyms[0]] : 0;
                         $totalstats['A'] += isset($userstats[$acronyms[1]]) ? $userstats[$acronyms[1]] : 0;
-                        $totalstats['T'] += isset($userstats[$acronyms[2]]) ? $userstats[$acronyms[2]] : 0;
-                        $totalstats['J'] += isset($userstats[$acronyms[3]]) ? $userstats[$acronyms[3]] : 0;
+                        $totalstats['L'] += isset($userstats[$acronyms[2]]) ? $userstats[$acronyms[2]] : 0;
+                        $totalstats['E'] += isset($userstats[$acronyms[3]]) ? $userstats[$acronyms[3]] : 0;
 
                         $userstats['P'] = isset($userstats[$acronyms[0]]) ? $userstats[$acronyms[0]] : 0;
                         $userstats['A'] = isset($userstats[$acronyms[1]]) ? $userstats[$acronyms[1]] : 0;
-                        $userstats['T'] = isset($userstats[$acronyms[2]]) ? $userstats[$acronyms[2]] : 0;
-                        $userstats['J'] = isset($userstats[$acronyms[3]]) ? $userstats[$acronyms[3]] : 0;
+                        $userstats['L'] = isset($userstats[$acronyms[2]]) ? $userstats[$acronyms[2]] : 0;
+                        $userstats['E'] = isset($userstats[$acronyms[3]]) ? $userstats[$acronyms[3]] : 0;
 
                         if (isset($userdata->summary[$ca->attid])) {
                             $usersummary = $userdata->summary[$ca->attid]->get_all_sessions_summary_for($userdata->user->id);
