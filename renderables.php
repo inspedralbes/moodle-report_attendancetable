@@ -69,7 +69,7 @@ class attendancetable_print_table implements renderable {
                     if ($userdata->user->id == $USER->id) {
                         $totalattendance = 0;
                         $totalpercentage = 0;
-                        $totalstats = ['P' => 0, 'A' => 0, 'T' => 0, 'J' => 0];
+                        $totalstats = [];
 
                         foreach ($userdata->coursesatts as $ca) {
                             $usersummary = new stdClass();
