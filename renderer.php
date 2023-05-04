@@ -69,7 +69,7 @@ class report_attendancetable_renderer extends plugin_renderer_base {
             $rows->cells[] = '------';
             $cell = new html_table_cell();
                         $cell = html_writer::start_div('grid');
-                        $cell .= html_writer::div("Per", 'percentage');
+                        $cell .=  html_writer::div(get_string('Aacronym', 'mod_attendance'), 'absent');
                         $cell .= html_writer::div(get_string('Pacronym', 'mod_attendance'), 'present');
                         $cell .= html_writer::div(get_string('Lacronym', 'mod_attendance'), 'late');
                         $cell .= html_writer::div(get_string('Eacronym', 'mod_attendance'), 'excused');
@@ -96,8 +96,8 @@ class report_attendancetable_renderer extends plugin_renderer_base {
                     &mode=1&id={$attptable->idatt}", fullname(core_user::get_user($user)));
                 $cell = new html_table_cell();
                 $cell = html_writer::start_div('grid');
-                $cell .= html_writer::div($attptable->data[$user]['total']['stats']['A'], 'main');
-                $cell .= html_writer::div($attptable->data[$user]['total']['average'], 'prec');
+                $cell .= html_writer::div($attptable->data[$user]['total']['average'], 'main');
+                $cell .= html_writer::div($attptable->data[$user]['total']['stats']['A'], 'absent');
                 $cell .= html_writer::div($attptable->data[$user]['total']['stats']['P'], 'present');
                 $cell .= html_writer::div($attptable->data[$user]['total']['stats']['L'], 'late');
                 $cell .= html_writer::div($attptable->data[$user]['total']['stats']['E'], 'excused');

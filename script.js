@@ -2,7 +2,8 @@ const tableHeaders = [{ key: "user", parser: "string" }];
 const tableHeadersConfig = [{
     key: "user",
     formatter: "string",
-    sortable: true
+    sortable: true,
+    className: "table-head"
 }];
 
 function prova(Y, headers, userHead, totalHead) {
@@ -12,6 +13,7 @@ function prova(Y, headers, userHead, totalHead) {
         key: 'total',
         label: totalHead,
         formatter: "integer",
+        className: "table-head"
     });
     for (const [key, val] of Object.entries(headers)) {
         const subHeaders = [];
@@ -21,6 +23,7 @@ function prova(Y, headers, userHead, totalHead) {
                 key: `${key}${subHead}`,
                 label: `${subHead}`,
                 formatter: "string",
+                className: "section-cell"
             });
         });
         tableHeadersConfig.push({
