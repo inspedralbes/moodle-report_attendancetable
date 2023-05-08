@@ -24,7 +24,7 @@
 
 defined('MOODLE_INTERNAL') || die();
 
-$plugin->version = 2023050417; // The current plugin version.
+$plugin->version = 2023050800; // The current plugin version.
 $plugin->requires = 2020061500; // Moodle version this plugin requires.
 $plugin->component = 'report_attendancetable'; // Plugin name and type.
 $plugin->dependencies = array('mod_attendance' => 2021050702); // Requires Attendance plugin.

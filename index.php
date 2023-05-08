@@ -27,6 +27,8 @@ require_once($CFG->dirroot . '/mod/attendance/locallib.php'); // Requires Attend
 
 $id = required_param('id', PARAM_INT); // Course id.
 
+//var_dump(get_config('attendancetable', 'percentage'));
+
 $attendanceparams = new mod_attendance_view_page_params(); // Page parameters, necessary to create mod_attendance_structure object.
 
 $attendanceparams->studentid = null;
@@ -65,7 +67,8 @@ if (count($allattendances) > 0) {
     $PAGE->set_url($url);
     $PAGE->requires->js('/report/attendancetable/script.js');
     $PAGE->requires->js_init_call('prova', array($printattendancetable->attendancespercourse,
-        get_string('user_head', 'report_attendancetable'), get_string('all_courses_head', 'report_attendancetable')));
+        get_string('user_head', 'report_attendancetable'), get_string('all_courses_head', 'report_attendancetable'
+        ), get_config('attendancetable', 'percentage'), get_config('attendancetable', 'color')));
 
     echo $output->header();
     echo $output->render($printattendancetable);
