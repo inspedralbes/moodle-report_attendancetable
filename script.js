@@ -6,7 +6,10 @@ const tableHeadersConfig = [{
     className: "table-head"
 }];
 
-function prova(Y, headers, userHead, totalHead) {
+var percentage = '';
+var color = '';
+
+function prova(Y, headers, userHead, totalHead, percentage, color) {
     tableHeadersConfig[0].label = userHead;
     tableHeaders.push({ key: 'total', parser: 'integer' });
     tableHeadersConfig.push({
@@ -33,6 +36,8 @@ function prova(Y, headers, userHead, totalHead) {
             children: subHeaders
         });
     }
+    this.percentage = parseFloat(percentage);
+    this.color = color;
 }
 
 YUI().use("yui2-datatable", "yui2-paginator", function (Y) {
@@ -46,4 +51,36 @@ YUI().use("yui2-datatable", "yui2-paginator", function (Y) {
     var columns = tableHeadersConfig;
     var dataTable = new YAHOO.widget.DataTable
         ("container", columns, dataSource);
+    changeColor();
 });
+
+function changeColor() {
+    let heads = document.querySelectorAll('[class*="table-head"]');
+    let textColor = getTextColor(extractColor(this.color));
+    heads.forEach(head => {
+        element = head.querySelector('[class*="main"]');
+        if(element != null) {
+            let currentPercentage = parseFloat(element.innerHTML);
+            if(currentPercentage < this.percentage) {
+                element.style.backgroundColor = this.color;
+                element.style.color = textColor;
+            }
+        }
+    });
+}
+
+function extractColor(color) {
+    let hex = color.substring(1);
+    let red = hex.substring(0, 2);
+    let green = hex.substring(2, 4);
+    let blue = hex.substring(4, 6);
+    return [Number('0x' + red), Number('0x' + green), Number('0x' + blue)];
+}
+
+function getTextColor(colors) {
+    if ((colors[0] * 0.299 + colors[1] * 0.587 + colors[2] * 0.114) > 186) {
+        return "#000000";
+    } else {
+        return "#FFFFFF";
+    }
+}

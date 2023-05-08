@@ -18,13 +18,17 @@ Manual download
 ---------------
 1. Download the plugin
 2. Copy its content to a folder called attendancetable inside your moodle/report
+
 ![Folder screenshot](/screenshots/report_folder.png)
+
 3. As admin, go to site administration and follow the necessary steps to install the plugin
+
 ![Sidebar](/screenshots/sidebar.png)
-<br>
+
 <sup>Sidebar on the dashboard, although Moodle might auto redirect the admin account to the administrator screen</sup>
 
 ![Report upgrade 1](/screenshots/upgrade.png)
+
 ![Report upgrade 2](/screenshots/plugin_upgrade.png)
 
 Setting up the block
@@ -33,18 +37,41 @@ Setting up the block
 1. Turn editing on
 2. Add an Attendance activity to your course (if there's none yet)
 3. Once Attendance is set up, click on the gear on the top right part of the course, then click on More
+
 ![Course gear](/screenshots/report_access.png)
+
 4. Click on Attendance Table on Reports in the Course administration section
+
 ![Admin page](/screenshots/course_admin.png)
+
+Report settings
+---------------
+1. As admin, go to site administration
+
+![Sidebar](/screenshots/sidebar.png)
+
+2. Click on Plugins then Plugins (next to Install Plugins)
+
+![Plugin tab](/screenshots/plugins_tab.png)
+
+3. Click on Category: Reports
+
+![Report category](/screenshots/category_reports.png)
+
+4. You can edit the report's settings, which includes the warning percentage and the cell's background color
+
+![Report settings](/screenshots/report_settings.png)
+
+Important: these changes are global across all attendance table reports in the site.
 
 Report view
 -----------
 ![Report view tutor](/screenshots/report_view_teacher.png)
-<br>
+
 <sup>The tutor's view</sup>
-<br>
+
 ![Report view student](/screenshots/report_view_student.png)
-<br>
+
 <sup>The student's view</sup>
 
 Important
