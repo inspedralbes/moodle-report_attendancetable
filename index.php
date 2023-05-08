@@ -27,8 +27,6 @@ require_once($CFG->dirroot . '/mod/attendance/locallib.php'); // Requires Attend
 
 $id = required_param('id', PARAM_INT); // Course id.
 
-//var_dump(get_config('attendancetable', 'percentage'));
-
 $attendanceparams = new mod_attendance_view_page_params(); // Page parameters, necessary to create mod_attendance_structure object.
 
 $attendanceparams->studentid = null;
