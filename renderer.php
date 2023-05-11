@@ -41,7 +41,7 @@ class report_attendancetable_renderer extends plugin_renderer_base {
      * @return string html code
      */
     protected function render_attendancetable_print_table(attendancetable_print_table $attptable) {
-        global $CFG;
+        global $CFG, $COURSE;
 
         if (count($attptable->data) == 0) {
             return html_writer::nonempty_tag('p', get_string('no_users', 'report_attendancetable'));
@@ -137,6 +137,23 @@ class report_attendancetable_renderer extends plugin_renderer_base {
             $out .= html_writer::empty_tag('hr');
             $out .= html_writer::nonempty_tag('p', "{$present} = {$fullpresent} | {$absent} = {$fullabsent} |
                 {$late} = {$fulllate} | {$excused} = {$fullexcused}");
+
+            $coursecontext = get_context_instance(CONTEXT_COURSE, $COURSE->id);
+
+            if(has_capability('moodle/site:config', $coursecontext)) {
+                $formattributes = array('action' => $CFG->wwwroot . '/admin/settings.php', 'method' => 'get');
+                $form .= html_writer::start_tag('form', $formattributes);
+                $form .= html_writer::empty_tag('input', array('type' => 'hidden', 'name' => 'section', 'value' => 'reportattendancetable'));
+                $form .= html_writer::empty_tag('input', array(
+                    'type' => 'submit', 'class' => 'btn btn-primary',
+                    'value' => get_string('settings_button', 'report_attendancetable')
+                ));
+                $form .= html_writer::end_tag('form');
+                $summarybutton = html_writer::start_div();
+                $summarybutton .= html_writer::div($form, 'centerItem');
+                $summarybutton .= html_writer::end_div();
+                $out .= $summarybutton;
+            }
 
             return $out;
         }

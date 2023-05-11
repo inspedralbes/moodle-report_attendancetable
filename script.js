@@ -52,18 +52,23 @@ YUI().use("yui2-datatable", "yui2-paginator", function (Y) {
     var dataTable = new YAHOO.widget.DataTable
         ("container", columns, dataSource);
     changeColor();
+    document.querySelector('[class*="yui-dt-sortable"]').addEventListener("click", () => { setTimeout(() => {
+        changeColor()
+    }, 50);  });
 });
 
 function changeColor() {
+    console.log(this.color);
     let heads = document.querySelectorAll('[class*="table-head"]');
     let textColor = getTextColor(extractColor(this.color));
     heads.forEach(head => {
         element = head.querySelector('[class*="main"]');
-        if(element != null) {
+        if (element != null) {
             let currentPercentage = parseFloat(element.innerHTML);
-            if(currentPercentage < this.percentage) {
+            if (currentPercentage < this.percentage) {
                 element.style.backgroundColor = this.color;
                 element.style.color = textColor;
+                console.log(element);
             }
         }
     });

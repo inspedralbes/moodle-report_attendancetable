@@ -41,3 +41,4 @@ $string['settingspercentage_title'] = 'Attendance average warning';
 $string['settingspercentage_description'] = 'The average attendance percentage at which the report cell will change backgroud color.';
 $string['settingscolor_title'] = 'Cell background color';
 $string['settingscolor_description'] = 'The color the cell will use if the student\'s average attendance is below the number above.';
+$string['settings_button'] = 'Change report settings';
