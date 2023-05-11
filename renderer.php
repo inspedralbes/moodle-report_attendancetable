@@ -140,10 +140,11 @@ class report_attendancetable_renderer extends plugin_renderer_base {
 
             $coursecontext = get_context_instance(CONTEXT_COURSE, $COURSE->id);
 
-            if(has_capability('moodle/site:config', $coursecontext)) {
+            if (has_capability('moodle/site:config', $coursecontext)) {
                 $formattributes = array('action' => $CFG->wwwroot . '/admin/settings.php', 'method' => 'get');
                 $form .= html_writer::start_tag('form', $formattributes);
-                $form .= html_writer::empty_tag('input', array('type' => 'hidden', 'name' => 'section', 'value' => 'reportattendancetable'));
+                $form .= html_writer::empty_tag('input', array('type' => 'hidden', 'name' => 'section',
+                    'value' => 'reportattendancetable'));
                 $form .= html_writer::empty_tag('input', array(
                     'type' => 'submit', 'class' => 'btn btn-primary',
                     'value' => get_string('settings_button', 'report_attendancetable')
