@@ -29,4 +29,4 @@ $plugin->requires = 2020061500; // Moodle version this plugin requires.
 $plugin->component = 'report_attendancetable'; // Plugin name and type.
 $plugin->dependencies = array('mod_attendance' => 2021050702); // Requires Attendance plugin.
 $plugin->maturity = MATURITY_STABLE;
-$plugin->release = '1.1.1';
+$plugin->release = '1.1.1.1';
